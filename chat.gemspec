@@ -9,15 +9,16 @@ Gem::Specification.new do |s|
   s.version     = Chat::VERSION
   s.authors     = ["toptierlabs"]
   s.email       = ["anthfb@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Chat."
-  s.description = "TODO: Description of Chat."
+  s.homepage    = "http://www.toptierlabs.com"
+  s.summary     = "Summary of Chat."
+  s.description = "Description of Chat."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.4"
+  s.add_dependency "jbuilder", "~> 1.2"
 
   s.add_development_dependency "sqlite3"
 end
