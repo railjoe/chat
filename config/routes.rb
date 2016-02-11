@@ -1,7 +1,4 @@
 Chat::Engine.routes.draw do
-  resources :conversation, only: [:index] do
-    member do
-      resources :messages
-    end
-  end
+  resources :conversations, only: [:index]
+  resources :messages, only: [:create]
 end

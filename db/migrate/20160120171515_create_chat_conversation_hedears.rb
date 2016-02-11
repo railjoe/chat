@@ -1,6 +1,6 @@
-class CreateChatConversationHedears < ActiveRecord::Migration
+class CreateChatConversationHeaders < ActiveRecord::Migration
   def change
-    create_table :chat_conversation_hedears do |t|
+    create_table :chat_conversation_headers do |t|
       if Chat.user_2_class.present?
         user_1 = Chat.user_1_class.downcase
         user_2 = Chat.user_2_class.downcase
