@@ -3,7 +3,7 @@
 This project rocks and uses MIT-LICENSE.
 
 rails g chat "chat"
-rake blorgh:install:migrations
+rake chat:install:migrations
 
 routes.rb
 mount Chat::Engine => "/chat"

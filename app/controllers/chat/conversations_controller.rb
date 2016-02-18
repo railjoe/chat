@@ -1,7 +1,7 @@
 module Chat
-  class ConversationsController < Api::V1::ApiController
+  class ConversationsController < ApplicationController
     def index
-      @conversations = current_user.conversations
+      @conversations = send(Chat.method_current_user).conversations
     end
   end
 end

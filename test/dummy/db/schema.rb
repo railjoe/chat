@@ -11,21 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121144916) do
+ActiveRecord::Schema.define(version: 20160217173331) do
 
-  create_table "chat_conversation_hedears", force: :cascade do |t|
-    t.integer  "client_1_id"
-    t.integer  "client_2_id"
-    t.datetime "last_read_client_1"
-    t.datetime "last_read_client_2"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "chat_conversation_headers", force: :cascade do |t|
+    t.integer  "user_1_id"
+    t.integer  "user_2_id"
+    t.datetime "last_read_user_1"
+    t.datetime "last_read_user_2"
     t.integer  "conversation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "chat_conversation_hedears", ["client_1_id"], name: "index_chat_conversation_hedears_on_client_1_id"
-  add_index "chat_conversation_hedears", ["client_2_id"], name: "index_chat_conversation_hedears_on_client_2_id"
-  add_index "chat_conversation_hedears", ["conversation_id"], name: "index_chat_conversation_hedears_on_conversation_id"
+  add_index "chat_conversation_headers", ["conversation_id"], name: "index_chat_conversation_headers_on_conversation_id", using: :btree
+  add_index "chat_conversation_headers", ["user_1_id"], name: "index_chat_conversation_headers_on_user_1_id", using: :btree
+  add_index "chat_conversation_headers", ["user_2_id"], name: "index_chat_conversation_headers_on_user_2_id", using: :btree
 
   create_table "chat_conversations", force: :cascade do |t|
     t.string   "last_message"
@@ -35,14 +38,32 @@ ActiveRecord::Schema.define(version: 20160121144916) do
 
   create_table "chat_messages", force: :cascade do |t|
     t.integer  "conversation_id"
-    t.integer  "client_id"
+    t.integer  "user_id"
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "chat_messages", ["client_id"], name: "index_chat_messages_on_client_id"
-  add_index "chat_messages", ["conversation_id"], name: "index_chat_messages_on_conversation_id"
-  add_index "chat_messages", ["created_at"], name: "index_chat_messages_on_created_at"
+  add_index "chat_messages", ["conversation_id"], name: "index_chat_messages_on_conversation_id", using: :btree
+  add_index "chat_messages", ["created_at"], name: "index_chat_messages_on_created_at", using: :btree
+  add_index "chat_messages", ["user_id"], name: "index_chat_messages_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "authentication_token"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+  end
+
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -1,5 +1,5 @@
 module Chat
-  class MessagesController < Api::V1::ApiController
+  class MessagesController < ApplicationController
     before_action :load_conversation, only: [:create]
 
     def create

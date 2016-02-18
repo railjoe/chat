@@ -39,7 +39,6 @@ Spork.prefork do
     config.infer_spec_type_from_file_location!
 
     config.include FactoryGirl::Syntax::Methods
-
     # Uncomment if you want to include Devise. Add devise to your gemfile
     # config.include Devise::TestHelpers, type: :controller
 
