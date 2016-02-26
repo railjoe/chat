@@ -20,3 +20,7 @@ gem 'thin', '~> 1.6.3'
 
 gem 'database_cleaner', '~> 1.4.1'
 gem 'shoulda-matchers', '~> 2.8.0'
+gem 'simple_token_authentication', '~> 1.6.0'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'

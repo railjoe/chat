@@ -134,6 +134,10 @@ GEM
     rspec-support (3.3.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simple_token_authentication (1.6.0)
+      actionmailer (>= 3.2.6, < 5)
+      actionpack (>= 3.2.6, < 5)
+      devise (~> 3.2)
     spork (1.0.0rc4)
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
@@ -165,10 +169,12 @@ DEPENDENCIES
   devise (~> 3.5.1)
   factory_girl_rails (~> 4.5.0)
   faker (~> 1.4.3)
+  jbuilder (~> 1.2)
   pg
   rails (~> 4.2.2)
   rspec-rails (~> 3.3.2)
   shoulda-matchers (~> 2.8.0)
+  simple_token_authentication (~> 1.6.0)
   spork-rails (~> 4.0.0)
   thin (~> 1.6.3)
 

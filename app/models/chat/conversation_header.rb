@@ -7,7 +7,6 @@ module Chat
     belongs_to :conversation, class_name: "Chat::Conversation"
 
     before_create :check_conversation
-    skip_callback :create, :before, :create_inverse
     after_create :create_inverse
 
     private

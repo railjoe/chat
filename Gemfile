@@ -27,3 +27,4 @@ group :test do
 end
 
 gem 'annotate', '~> 2.6.5'
+gem 'jbuilder', '~> 1.2'

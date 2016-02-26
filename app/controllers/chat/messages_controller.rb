@@ -12,7 +12,7 @@ module Chat
     private
 
     def load_conversation
-      conv_hedear = ConversationHeader.create(
+      conv_hedear = ConversationHeader.find_or_create_by(
         "#{Chat.klass_1}_id": current_user.id,
         "#{Chat.klass_2}_id": params[:to_user_id]
       )
