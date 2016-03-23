@@ -2,11 +2,14 @@
 
 This project rocks and uses MIT-LICENSE.
 
+Add the file chat.rb inside config/
+Also define some variables:
+Chat.only_one_model = "true" # True if you want to use chat only for users, otherway put false and add 'user_2_class'
+Chat.user_1_class = "User"
+Chat.method_current_user = "current_user" Method used to get the current user, if your app has Devise, set the method to "current_#{your_model}"
+
 rails g chat "chat"
 rake chat:install:migrations
 
 routes.rb
 mount Chat::Engine => "/chat"
-
-application.rb
-require "chat"
