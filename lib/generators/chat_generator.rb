@@ -13,11 +13,11 @@ module Chat
         model_path = File.join("app", "models", "#{Chat.user_1_class.downcase}.rb")
         if Chat.user_2_class.present?
           model_path_2 = File.join("app", "models", "#{Chat.user_2_class.downcase}.rb")
-          inject_into_class(model_path_2, Chat.user_2_class.classify.safe_constantize, content)
           content = <<-CONTENT
   has_many :conversation_headers, class_name: "Chat::ConversationHeader"
   has_many :conversations, through: :conversation_headers
 CONTENT
+          inject_into_class(model_path_2, Chat.user_2_class.classify.safe_constantize, content)
         else
           content = <<-CONTENT
   has_many :conversation_headers, class_name: "Chat::ConversationHeader", foreign_key: "#{Chat.user_1_class.downcase}_1_id"
