@@ -7,9 +7,16 @@ module Chat
     belongs_to :conversation, class_name: "Chat::Conversation"
 
     before_create :check_conversation
-    after_create :create_inverse
+    after_create :create_inverse, if: :has_one_model?
 
     private
+
+    def has_one_model?
+      puts '*'*90
+      puts Chat.only_one_model
+      puts '*'*90
+      Chat.only_one_model
+    end
 
     def check_conversation
       if self.conversation.nil?

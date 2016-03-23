@@ -3,8 +3,9 @@ module Chat
     before_action :load_conversation, only: [:create]
 
     def create
+      current_user_class = current_user.class.name.underscore
       @message = @conversation.messages.create(
-        user_id: current_user.id,
+        "#{current_user_class}_id" => current_user,
         text: params[:text]
       )
     end
@@ -12,9 +13,20 @@ module Chat
     private
 
     def load_conversation
+      if Chat.klass_1 == current_user.class.name.underscore
+        id_klass_1 = current_user.id
+        id_klass_2 = params[:to_user_id]
+      else
+        id_klass_1 = params[:to_user_id]
+        id_klass_2 = current_user.id
+      end
+      puts '*'*80
+      puts id_klass_1
+      puts id_klass_2
+      puts '*'*80
       conv_hedear = ConversationHeader.find_or_create_by(
-        "#{Chat.klass_1}_id": current_user.id,
-        "#{Chat.klass_2}_id": params[:to_user_id]
+        "#{Chat.klass_1}_id": id_klass_1,
+        "#{Chat.klass_2}_id": id_klass_2
       )
       @conversation = conv_hedear.conversation
     end
