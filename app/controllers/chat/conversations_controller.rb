@@ -3,5 +3,9 @@ module Chat
     def index
       @conversations = send(Chat.method_current_user).conversations
     end
+
+    def show
+      @conversation = Conversation.find(params[:id])
+    end
   end
 end

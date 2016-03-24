@@ -12,9 +12,6 @@ module Chat
     private
 
     def has_one_model?
-      puts '*'*90
-      puts Chat.only_one_model
-      puts '*'*90
       Chat.only_one_model
     end
 
