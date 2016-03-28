@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217173331) do
+ActiveRecord::Schema.define(version: 20160328180201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160217173331) do
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   add_index "chat_messages", ["conversation_id"], name: "index_chat_messages_on_conversation_id", using: :btree

@@ -37,5 +37,13 @@ RSpec.describe Chat::MessagesController, :type => :controller do
       conversation_header = Chat::ConversationHeader.find_by(user_1_id: @user.id, user_2_id: friend.id)
       expect(conversation_header.conversation.last_message).to eq text
     end
+
+    it 'send message with an image' do
+      friend = FactoryGirl.create(:user)
+      image = File.new(File.join(Rails.root, 'spec', 'fixtures', 'images', 'avatar.jpg'))
+      post :create, format: 'json', id: @user.id, to_user_id: friend.id, image: image
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['image']).to_not be_nil
+    end
   end
 end

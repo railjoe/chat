@@ -44,6 +44,11 @@ GEM
     arel (6.0.3)
     bcrypt (3.1.10)
     builder (3.2.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     concurrent-ruby (1.0.0)
     daemons (1.1.9)
     database_cleaner (1.4.1)
@@ -162,6 +167,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave (~> 0.10.0)
   chat!
   database_cleaner (~> 1.4.1)
   devise (~> 3.5.1)

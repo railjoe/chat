@@ -6,7 +6,8 @@ module Chat
       current_user_class = current_user.class.name.underscore
       @message = @conversation.messages.create(
         "#{current_user_class}_id": current_user.id,
-        text: params[:text]
+        text: params[:text],
+        image: params[:image]
       )
     end
 
