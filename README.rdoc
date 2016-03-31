@@ -13,3 +13,24 @@ rake chat:install:migrations
 
 routes.rb
 mount Chat::Engine => "/chat"
+
+This gem requieres PushWoosh, you should create a service for that third party, called PushWooshService
+
+PushWooshService.rb
+
+class PushWooshService
+  def self.send_message(device_tokens, message)
+    PushWoosh.delay.notify(
+      send_date: 'now',
+      ignore_user_timezone: true,
+      content: message,
+      platforms: [1],
+      devices: [device_tokens]
+    )
+  end
+
+  def self.notify(notification)
+    push = PushWoosher::Push.new(notification: notification) # We use pushwoosher gem to handle the comunication with PushWoosh API
+    push.post
+  end
+end
