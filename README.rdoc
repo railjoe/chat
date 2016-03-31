@@ -34,3 +34,13 @@ class PushWooshService
     push.post
   end
 end
+
+Also chat gem requieres Pusher, you should create a service for that third party, called PusherService
+
+Pusher.rb
+
+class PusherService
+  def self.notify(chanel, event, message)
+    Pusher.trigger("#{chanel}", "#{event}", message)
+  end
+end

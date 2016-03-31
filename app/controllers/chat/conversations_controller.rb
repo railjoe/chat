@@ -7,6 +7,7 @@ module Chat
     end
 
     def show
+      @messages = @conversation.messages.page params[:page]
     end
 
     def mark_as_read
