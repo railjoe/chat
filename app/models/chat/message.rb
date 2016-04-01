@@ -27,13 +27,10 @@ module Chat
         else
           receiver = conversation.header_first.send(Chat.klass_1)
         end
-        puts '*'*80
-        puts receiver.to_json
-        puts '*'*80
-        PushWooshService.send_message(receiver.push_tokens, "#{sender.email} has sent you a new message")
+        PushWooshService.delay.send_message(receiver.push_tokens.pluck(:token), "#{sender.full_name} has sent you a new message", { conversation_id: conversation_id })
         PusherService.delay.notify("conversation-#{conversation.id}", receiver.id, self)
         user_class = receiver.class.name.underscore
-        PusherService.delay.notify("#{user_class}-#{receiver.id}", 'conversation-badge', sender.id)
+        PusherService.delay.notify("#{user_class}-#{receiver.id}", 'conversation-badge', { sender_id: sender.id, conversation_id: conversation_id })
       end
     end
   end

@@ -7,7 +7,8 @@ module Chat
     end
 
     def show
-      @messages = @conversation.messages.page params[:page]
+      @msg = @conversation.messages.order(created_at: :desc).page params[:page]
+      @messages = @msg.order(created_at: :asc)
     end
 
     def mark_as_read
