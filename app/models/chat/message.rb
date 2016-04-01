@@ -33,7 +33,7 @@ module Chat
         PushWooshService.send_message(receiver.push_tokens, "#{sender.email} has sent you a new message")
         PusherService.delay.notify("conversation-#{conversation.id}", receiver.id, self)
         user_class = receiver.class.name.underscore
-        PusherService.delay.notify("#{user_class}-#{receiver.id}", 'conversation-badge', badge: true)
+        PusherService.delay.notify("#{user_class}-#{receiver.id}", 'conversation-badge', sender.id)
       end
     end
   end
